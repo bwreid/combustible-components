@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import FireworksList from './components/FireworksList'
 
-const attributes = [
+const allAttributes = [
   { id: 1, kind: 'color', value: 'red' },
   { id: 2, kind: 'color', value: 'white' },
   { id: 3, kind: 'color', value: 'blue' },
@@ -13,6 +13,11 @@ const attributes = [
   { id: 8, kind: 'size', value: 'medium' },
   { id: 9, kind: 'size', value: 'large' },
 ]
+
+const attributes = {
+  all: allAttributes,
+  byId: allAttributes.reduce((acc, attr) => ({ ...acc, [attr.id]: attr }), {})
+}
 
 const fireworks = [
   { id: 1, name: 'Red & Blue Peony', attributeIds: [ 1, 3, 4, 8 ] },

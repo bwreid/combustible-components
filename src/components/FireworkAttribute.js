@@ -1,7 +1,11 @@
 import React from 'react';
 
-const FireworkAttribute = ({ attribute }) => (
-  <li>{ attribute.kind }: { attribute.value }</li>
-);
+const FireworkAttribute = ({ kind, attributes }) => {
+  const values = attributes.map(attribute => attribute.value).join(', ')
+
+  return (
+    <li>{ kind }: { values }</li>
+  );
+}
 
 export default FireworkAttribute;

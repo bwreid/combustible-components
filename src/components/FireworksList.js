@@ -3,9 +3,16 @@ import FireworkItem from './FireworkItem'
 
 const FireworksList = ({ fireworks, attributes }) => {
   const list = fireworks.map(firework => {
-    const fireworkAttributes = attributes.filter(attribute => firework.attributeIds.includes(attribute.id))
+    const fireworkAttributes = firework.attributeIds
+      .map(id => attributes.byId[id])
+      .reduce((acc, attribute) => {
+        acc[attribute.kind] ? acc[attribute.kind].push(attribute) : acc[attribute.kind] = [attribute]
+        return acc
+      }, {})
+
     return <FireworkItem key={ firework.id } firework={ firework } attributes={ fireworkAttributes }/>
   })
+  
   return (
     <div className='container'>
       <div className='row'>
